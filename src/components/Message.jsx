@@ -1,6 +1,5 @@
 import style from './Message.module.scss'
 
-
 export const Message = ({ messageText }) => {
 
     return (<>

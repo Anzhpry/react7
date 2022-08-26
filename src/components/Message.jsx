@@ -1,8 +1,8 @@
-
 export const Message = ({ messageText }) => {
+    return (
+        <>
+            <p>{messageText}</p>
+        </>
+    );
+};
 
-    return (<>
-        <p>{messageText}</p>
-    </>
-    )
-}

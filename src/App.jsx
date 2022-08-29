@@ -1,16 +1,17 @@
 import { Message } from './components/Message';
 import { useState } from 'react';
+import { Form } from './components/Form';
 
 export const App = () => {
-  const [messageText, setMessage] = useState('Hello');
-  const handleClick = (ev) => {
-    setMessage(ev.target.value);
-  };
+  const [messageList, setMessageList] = useState([]);
 
   return (
     <div className="App">
-      <input onChange={handleClick} />
-      <Message messageText={messageText} />
+      <h3>Lesson-1</h3>
+      <Message />
+      <hr />
+      <h3>Lesson-2</h3>
+      <Form messageList={messageList} setMessageList={setMessageList} />
     </div>
   );
 };

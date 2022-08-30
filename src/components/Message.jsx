@@ -1,15 +1,11 @@
-import { useState } from 'react';
-
-export const Message = () => {
-  const [messageText, setMessage] = useState('Hello');
-  const handleClick = (ev) => {
-    setMessage(ev.target.value);
-  };
-
-  return (
-    <>
-      <input onChange={handleClick} />
-      <p>{messageText}</p>
-    </>
-  );
-};
+export const Message = ({ messageList }) => {
+    return (
+        <ul>
+            {messageList.map((item, idx) => (
+                <li key={idx}>
+                    {item.author} : {item.text}
+                </li>
+            ))}
+        </ul>
+    )
+}; 

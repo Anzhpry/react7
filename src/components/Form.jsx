@@ -1,47 +1,24 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { AUTHOR } from 'src/constants';
 
-export const Form = ({ messageList, setMessageList }) => {
-  const [robotText, setRobotText] = useState();
+export const Form = ({ setMessageList, addMessages }) => {
   const [text, setText] = useState();
-  const author = 'Name';
 
-  useEffect(() => {
-    if (messageList.length !== 0) {
-      setTimeout(() => {
-        setRobotText(`${author}, отправлено`);
-        setTimeout(() => {
-          setRobotText();
-        }, 1500);
-      }, 1000);
-    }
-  }, [messageList]);
   const handleText = (event) => {
     setText(event.target.value);
   };
 
   const handleMessages = () => {
-    const message = {
-      author: author,
+    addMessages({
+      author: AUTHOR.user,
       text: text,
-    };
-    messageList.push(message);
-    setMessageList([...messageList]);
+    });
   };
 
   return (
-    <>
-      <ul>
-        {messageList.map((item, idx) => (
-          <li key={idx}>
-            {item.author} : {item.text}
-          </li>
-        ))}
-      </ul>
-      <div>
-        <textarea type="text" onBlur={handleText}></textarea>
-        <button onClick={handleMessages}>Отправить</button>
-        <p>{robotText}</p>
-      </div>
-    </>
+    <div>
+      <textarea type="text" onChange={handleText}></textarea>
+      <button disabled={!text} onClick={handleMessages}>Отправить</button>
+    </div>
   );
 };

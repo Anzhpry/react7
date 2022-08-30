@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import { AUTHOR } from 'src/constants';
 
-export const Form = ({ setMessageList, addMessages }) => {
+export const Form = ({ addMessages }) => {
   const [text, setText] = useState();
 
   const handleText = (event) => {
@@ -18,7 +18,9 @@ export const Form = ({ setMessageList, addMessages }) => {
   return (
     <div>
       <textarea type="text" onChange={handleText}></textarea>
-      <button disabled={!text} onClick={handleMessages}>Отправить</button>
+      <button disabled={!text} onClick={handleMessages}>
+        Отправить
+      </button>
     </div>
   );
 };

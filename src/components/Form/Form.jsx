@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { AUTHOR } from 'src/constants';
+//import { AUTHOR } from 'src/constants';
 
 export const Form = ({ addMessages }) => {
   const [text, setText] = useState();
@@ -10,7 +10,7 @@ export const Form = ({ addMessages }) => {
 
   const handleMessages = () => {
     addMessages({
-      author: AUTHOR.user,
+      author: 'user',    //AUTHOR.user,
       text: text,
     });
   };

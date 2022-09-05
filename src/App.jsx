@@ -1,7 +1,7 @@
 import { Message } from './components/Message';
 import { useState, useEffect } from 'react';
 import { Form } from './components/Form';
-import { AUTHOR } from 'src/constants';
+//import { AUTHOR } from 'src/constants';
 
 export const App = () => {
   const [messageList, setMessageList] = useState([]);
@@ -13,11 +13,11 @@ export const App = () => {
   useEffect(() => {
     if (
       messageList.length > 0 &&
-      messageList[messageList.length - 1].author === AUTHOR.user
+      messageList[messageList.length - 1].author === 'user' //AUTHOR.user
     ) {
       const timeout = setTimeout(() => {
         addMessages({
-          author: AUTHOR.bot,
+          author: 'bot', //AUTHOR.bot,
           text: 'Im BOT',
         });
       }, 1000);

@@ -10,7 +10,7 @@ export const Form = ({ addMessages }) => {
 
   const handleMessages = () => {
     addMessages({
-      author: 'user',    //AUTHOR.user,
+      author: 'user', //AUTHOR.user,
       text: text,
     });
   };

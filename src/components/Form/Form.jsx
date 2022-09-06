@@ -17,11 +17,14 @@ export const Form = ({ addMessages }) => {
 
   return (
     <div>
-      <input type="text" onChange={handleText} inputprops={{ 'data-testid': 'input' }}
+      <input
+        type="text"
+        onChange={handleText}
+        inputprops={{ 'data-testid': 'input' }}
       ></input>
       <button disabled={!text} onClick={handleMessages}>
         Отправить
       </button>
-    </div >
+    </div>
   );
 };

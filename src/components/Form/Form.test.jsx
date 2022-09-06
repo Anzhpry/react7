@@ -8,5 +8,4 @@ describe('Form', () => {
     const addMessages = jest.fn();
     render(<Form addMessages={addMessages} />);
   });
-
 });

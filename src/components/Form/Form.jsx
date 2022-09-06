@@ -1,5 +1,5 @@
 import { useState } from 'react';
-//import { AUTHOR } from 'src/constants';
+import { AUTHOR } from 'src/constants';
 
 export const Form = ({ addMessages }) => {
   const [text, setText] = useState();
@@ -10,17 +10,18 @@ export const Form = ({ addMessages }) => {
 
   const handleMessages = () => {
     addMessages({
-      author: 'user', //AUTHOR.user,
+      author: AUTHOR.user,
       text: text,
     });
   };
 
   return (
     <div>
-      <textarea type="text" onChange={handleText}></textarea>
+      <input type="text" onChange={handleText} inputprops={{ 'data-testid': 'input' }}
+      ></input>
       <button disabled={!text} onClick={handleMessages}>
         Отправить
       </button>
-    </div>
+    </div >
   );
 };

@@ -1,9 +1,11 @@
-import style from './Message.module.scss'
-
-export const Message = ({ messageText }) => {
-
-    return (<>
-        <p className={style.message}>{messageText}</p>
-    </>
-    )
-}
+export const Message = ({ messageList }) => {
+  return (
+    <ul>
+      {messageList.map((item, idx) => (
+        <li key={idx}>
+          {item.author} : {item.text}
+        </li>
+      ))}
+    </ul>
+  );
+};

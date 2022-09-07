@@ -19,15 +19,19 @@ export const Form: FC<FormProps> = ({ addMessages }) => {
       author: AUTHOR.USER,
       text: text,
     });
-
   };
 
   return (
     <div>
-      <TextField type="text"
-        onChange={handleText}
-      />
-      <Button type="submit" disabled={!text} onClick={handleMessages} variant="contained">Отправить</Button>
+      <TextField type="text" onChange={handleText} />
+      <Button
+        type="submit"
+        disabled={!text}
+        onClick={handleMessages}
+        variant="contained"
+      >
+        Отправить
+      </Button>
     </div>
   );
 };

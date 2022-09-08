@@ -10,7 +10,7 @@ export const MessageList: FC<MassageProps> = ({ messageList }) => {
   return (
     <List>
       {messageList.map((item, idx) => (
-        <ListItem key={idx}>
+        <ListItem key={idx} data-testid="li">
           {item.author} : {item.text}
         </ListItem>
       ))}

@@ -1,14 +1,14 @@
 import { MessageList } from './components/MessageList';
-import { useState, useEffect, FC } from 'react';
+import { useState, useEffect, FC, useCallback } from 'react';
 import { Form } from './components/Form';
 import { AUTHOR, Message, Messages } from './types';
 
 export const App: FC = () => {
   const [messageList, setMessageList] = useState<Messages>([]);
 
-  const addMessages = (newMessage: Message) => {
+  const addMessages = useCallback((newMessage: Message) => {
     setMessageList((prevMessageList) => [...prevMessageList, newMessage]);
-  };
+  }, []);
 
   useEffect(() => {
     if (
@@ -23,7 +23,7 @@ export const App: FC = () => {
       }, 1000);
       return () => clearTimeout(timeout);
     }
-  }, [messageList]);
+  }, [messageList, addMessages]);
 
   return (
     <div className="App">

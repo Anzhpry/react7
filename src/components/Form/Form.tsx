@@ -1,7 +1,8 @@
 import { FC, useState, memo } from 'react';
-import Button from '@mui/material/Button';
+import { Button } from './components/Button';
 import TextField from '@mui/material/TextField';
 import { AUTHOR, Message } from 'src/types';
+
 
 interface FormProps {
   addMessages: (msg: Message) => void;
@@ -11,10 +12,12 @@ export const Form: FC<FormProps> = memo(({ addMessages }) => {
   const [text, setText] = useState();
 
   const handleText = (event: any) => {
+
     setText(event.target.value);
   };
 
-  const handleMessages = () => {
+  const handleMessages = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
     addMessages({
       author: AUTHOR.USER,
       text: text,
@@ -22,21 +25,13 @@ export const Form: FC<FormProps> = memo(({ addMessages }) => {
   };
 
   return (
-    <div>
+    <form onSubmit={handleMessages}>
       <TextField
         value={text || ''}
         onChange={handleText}
         inputProps={{ 'data-testid': 'input' }}
       />
-      <Button
-        type="submit"
-        disabled={!text}
-        onClick={handleMessages}
-        variant="contained"
-        data-testid="button"
-      >
-        Отправить
-      </Button>
-    </div>
+      <Button label='Отправить' disabled={!text} />
+    </form>
   );
 });

@@ -24,18 +24,19 @@ export const Form: FC<FormProps> = memo(({ addMessages }) => {
   return (
     <div>
       <TextField
-        value={text || ""}
+        value={text || ''}
         onChange={handleText}
-        inputProps={{ 'data-testid': 'input' }} />
+        inputProps={{ 'data-testid': 'input' }}
+      />
       <Button
         type="submit"
         disabled={!text}
         onClick={handleMessages}
         variant="contained"
-        data-testid='button'
+        data-testid="button"
       >
         Отправить
       </Button>
-    </div >
+    </div>
   );
 });

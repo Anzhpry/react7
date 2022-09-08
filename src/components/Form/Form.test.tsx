@@ -28,7 +28,4 @@ describe('Form', () => {
     fireEvent.click(button);
     expect(addMessage).toHaveBeenCalledTimes(1);
   });
-
-
-
 });

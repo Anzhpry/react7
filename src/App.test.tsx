@@ -4,35 +4,34 @@ import '@testing-library/jest-dom';
 import { App } from './App';
 
 describe('App', () => {
-    it('render component', () => {
-        render(<App />);
-    });
-    it('send user message', async () => {
-        render(<App />);
+  it('render component', () => {
+    render(<App />);
+  });
+  it('send user message', async () => {
+    render(<App />);
 
-        const input = screen.getByTestId<HTMLInputElement>('input');
-        await userEvent.type(input, 'Hello, world!');
+    const input = screen.getByTestId<HTMLInputElement>('input');
+    await userEvent.type(input, 'Hello, world!');
 
-        const button = screen.getByTestId('button');
-        await userEvent.click(button);
+    const button = screen.getByTestId('button');
+    await userEvent.click(button);
 
-        expect(screen.getAllByTestId('li').length).toBe(1);
-    });
-    it('bot answer', async () => {
-        render(<App />);
+    expect(screen.getAllByTestId('li').length).toBe(1);
+  });
+  it('bot answer', async () => {
+    render(<App />);
 
-        const input = screen.getByTestId<HTMLInputElement>('input');
-        await userEvent.type(input, 'Hello, world!');
+    const input = screen.getByTestId<HTMLInputElement>('input');
+    await userEvent.type(input, 'Hello, world!');
 
-        const button = screen.getByTestId('button');
-        await userEvent.click(button);
+    const button = screen.getByTestId('button');
+    await userEvent.click(button);
 
-        await waitFor(
-            () => expect(screen.getByText(/Im BOT/)).toBeInTheDocument(),
-            {
-                timeout: 1600,
-            }
-        );
-
-    });
+    await waitFor(
+      () => expect(screen.getByText(/Im BOT/)).toBeInTheDocument(),
+      {
+        timeout: 1600,
+      }
+    );
+  });
 });

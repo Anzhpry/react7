@@ -2,12 +2,23 @@ import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import { App } from './App';
+import { MemoryRouter } from 'react-router-dom';
 
 describe('App', () => {
   it('render component', () => {
     render(<App />);
   });
-  it('send user message', async () => {
+
+  it('wrong url', () => {
+    render(
+      <MemoryRouter initialEntries={['/wrong-url']}>
+        <App />
+      </MemoryRouter>
+    );
+
+    expect(screen.getByText('404 page')).toBeInTheDocument();
+  });
+  /* it('send user message', async () => {
     render(<App />);
 
     const input = screen.getByTestId<HTMLInputElement>('input');
@@ -33,5 +44,5 @@ describe('App', () => {
         timeout: 1600,
       }
     );
-  });
+  }); */
 });

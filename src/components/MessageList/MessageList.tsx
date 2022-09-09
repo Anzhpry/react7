@@ -1,9 +1,9 @@
 import { List, ListItem } from '@mui/material';
 import { FC } from 'react';
-import { Messages } from 'src/types';
+import { Message } from 'src/types';
 
 interface MassageProps {
-  messageList: Messages;
+  messageList: Message[];
 }
 
 export const MessageList: FC<MassageProps> = ({ messageList }) => {

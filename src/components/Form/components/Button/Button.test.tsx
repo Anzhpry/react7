@@ -9,7 +9,7 @@ describe('Button', () => {
   });
 
   it('button is disabled', () => {
-    render(<Button disabled >test</Button>);
+    render(<Button disabled>test</Button>);
 
     expect(screen.getByText(/test/)).toBeDisabled();
   });

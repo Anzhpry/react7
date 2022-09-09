@@ -5,24 +5,24 @@ import '@testing-library/jest-dom';
 
 describe('Button', () => {
   it('render component', () => {
-    render(<Button label="test" />);
+    render(<Button>test</Button>);
   });
 
   it('button is disabled', () => {
-    render(<Button label="test" disabled />);
+    render(<Button disabled >test</Button>);
 
     expect(screen.getByText(/test/)).toBeDisabled();
   });
 
   it('render component with text', () => {
-    render(<Button label="test" />);
+    render(<Button>test</Button>);
 
     expect(screen.getByText(/test/)).toBeInTheDocument();
   });
 
   it('button click with userEvent', async () => {
     const mockHandler = jest.fn();
-    render(<Button label="test" click={mockHandler} />);
+    render(<Button click={mockHandler}>test</Button>);
 
     await userEvent.click(screen.getByText(/test/));
 
@@ -31,7 +31,7 @@ describe('Button', () => {
 
   it('button async click', async () => {
     const mockHandler = jest.fn();
-    render(<Button label="test" click={() => setTimeout(mockHandler, 1500)} />);
+    render(<Button click={() => setTimeout(mockHandler, 1500)}>test</Button>);
 
     await userEvent.click(screen.getByText(/test/));
 

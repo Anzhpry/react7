@@ -29,7 +29,8 @@ export const Form: FC<FormProps> = memo(({ addMessages }) => {
         onChange={handleText}
         inputProps={{ 'data-testid': 'input' }}
       />
-      <Button label="Отправить" disabled={!text} />
-    </form>
+      <Button disabled={!text} render={(label: string) => <div>{label}</div>}>
+      </Button>
+    </form >
   );
 });

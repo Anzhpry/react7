@@ -10,6 +10,7 @@ interface ChatPageProps {
   onAddChat: (chat: Chat) => void;
   messageList: Messages;
   onAddMessage: (chatId: string, msg: Message) => void;
+  onDeleteChat: (chat: string) => void;
 }
 
 export const ChatPage: FC<ChatPageProps> = ({
@@ -17,6 +18,7 @@ export const ChatPage: FC<ChatPageProps> = ({
   onAddChat,
   onAddMessage,
   messageList,
+  onDeleteChat,
 }) => {
   const { chatId } = useParams();
 
@@ -42,7 +44,7 @@ export const ChatPage: FC<ChatPageProps> = ({
 
   return (
     <>
-      <ChatList chats={chats} onAddChat={onAddChat} />
+      <ChatList chats={chats} onAddChat={onAddChat} onDeleteChat={onDeleteChat} />
       <MessageList messageList={chatId ? messageList[chatId] : []} />
       <Form addMessages={onAddMessage} />
     </>

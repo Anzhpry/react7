@@ -1,4 +1,4 @@
-import { ListItem } from '@mui/material';
+import { ListItem, List } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import { FC, useState } from 'react';
 import { Chat } from 'src/types';
@@ -9,9 +9,10 @@ const nanoid = customAlphabet('1234567890abcdef', 10);
 interface ChatListProps {
   chats: Chat[];
   onAddChat: (chat: Chat) => void;
+  onDeleteChat: (chat: string) => void;
 }
 
-export const ChatList: FC<ChatListProps> = ({ chats, onAddChat }) => {
+export const ChatList: FC<ChatListProps> = ({ chats, onAddChat, onDeleteChat }) => {
   const [value, setValue] = useState('');
   const handelSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -37,6 +38,7 @@ export const ChatList: FC<ChatListProps> = ({ chats, onAddChat }) => {
             >
               {chat.name}
             </NavLink>
+            <button onClick={() => onDeleteChat(chat.name)}>Удалить</button>
           </ListItem>
         ))}
       </ul>

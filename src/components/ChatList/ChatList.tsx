@@ -1,4 +1,4 @@
-import { ListItem, List } from '@mui/material';
+import { ListItem } from '@mui/material';
 import { NavLink } from 'react-router-dom';
 import { FC, useState } from 'react';
 import { Chat } from 'src/types';
@@ -12,7 +12,11 @@ interface ChatListProps {
   onDeleteChat: (chat: string) => void;
 }
 
-export const ChatList: FC<ChatListProps> = ({ chats, onAddChat, onDeleteChat }) => {
+export const ChatList: FC<ChatListProps> = ({
+  chats,
+  onAddChat,
+  onDeleteChat,
+}) => {
   const [value, setValue] = useState('');
   const handelSubmit = (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();

@@ -44,7 +44,11 @@ export const ChatPage: FC<ChatPageProps> = ({
 
   return (
     <>
-      <ChatList chats={chats} onAddChat={onAddChat} onDeleteChat={onDeleteChat} />
+      <ChatList
+        chats={chats}
+        onAddChat={onAddChat}
+        onDeleteChat={onDeleteChat}
+      />
       <MessageList messageList={chatId ? messageList[chatId] : []} />
       <Form addMessages={onAddMessage} />
     </>

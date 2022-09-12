@@ -58,7 +58,13 @@ export const App: FC = () => {
         <Route path="chats">
           <Route
             index
-            element={<ChatList chats={chats} onAddChat={onAddChat} onDeleteChat={onDeleteChat} />}
+            element={
+              <ChatList
+                chats={chats}
+                onAddChat={onAddChat}
+                onDeleteChat={onDeleteChat}
+              />
+            }
           />
           <Route
             path=":chatId"

@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { MessageList } from './MessageList';
-import { AUTHOR, Messages } from 'src/types';
+//import { AUTHOR, Messages } from 'src/types';
 
 describe('MessageList', () => {
   it('render component', () => {

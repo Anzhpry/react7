@@ -1,13 +1,13 @@
 import { render, screen, waitFor } from '@testing-library/react';
-import userEvent from '@testing-library/user-event';
+//import userEvent from '@testing-library/user-event';
 import '@testing-library/jest-dom';
 import { App } from './App';
 import { MemoryRouter } from 'react-router-dom';
 
 describe('App', () => {
-  it('render component', () => {
-    render(<App />);
-  });
+  /*   it('render component', () => {
+      render(<App />);
+    }); */
 
   it('wrong url', () => {
     render(

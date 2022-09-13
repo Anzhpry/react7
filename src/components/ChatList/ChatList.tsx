@@ -31,7 +31,7 @@ export const ChatList: FC<ChatListProps> = ({
 
   return (
     <>
-      <ul >
+      <ul>
         {chats.map((chat) => (
           <ListItem key={chat.id}>
             <NavLink

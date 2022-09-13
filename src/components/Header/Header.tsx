@@ -25,7 +25,8 @@ export const Header: FC = () => {
         <ul className={style.ul}>
           {navigate.map((item, idx) => (
             <li key={idx}>
-              <NavLink className={style.li}
+              <NavLink
+                className={style.li}
                 to={item.path}
                 style={({ isActive }) => ({
                   color: isActive ? 'white' : 'black',

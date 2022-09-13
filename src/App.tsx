@@ -27,8 +27,6 @@ export const App: FC = () => {
   const [chats, setChats] = useState<Chat[]>(defaultChats);
   const [messageList, setMessageList] = useState<Messages>(defaultMessages);
 
-
-
   const onAddChat = (newChat: Chat) => {
     setChats([...chats, newChat]);
     setMessageList({
@@ -38,7 +36,7 @@ export const App: FC = () => {
   };
 
   const onDeleteChat = (chatId: string) => {
-    setChats(chats.filter(chat => chat.id !== chatId));
+    setChats(chats.filter((chat) => chat.id !== chatId));
   };
 
   const onAddMessage = (chatId: string, newMessage: Message) => {

@@ -1,6 +1,8 @@
 import { FC } from 'react';
 import { NavLink, Outlet } from 'react-router-dom';
 
+import style from './Header.module.scss';
+
 const navigate = [
   {
     name: 'Main',
@@ -19,14 +21,14 @@ const navigate = [
 export const Header: FC = () => {
   return (
     <>
-      <header>
-        <ul>
+      <header className={style.header}>
+        <ul className={style.ul}>
           {navigate.map((item, idx) => (
             <li key={idx}>
-              <NavLink
+              <NavLink className={style.li}
                 to={item.path}
                 style={({ isActive }) => ({
-                  color: isActive ? 'green' : 'blue',
+                  color: isActive ? 'white' : 'black',
                 })}
               >
                 {item.name}

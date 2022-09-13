@@ -9,7 +9,7 @@ const nanoid = customAlphabet('1234567890abcdef', 10);
 interface ChatListProps {
   chats: Chat[];
   onAddChat: (chat: Chat) => void;
-  onDeleteChat: (chat: string) => void;
+  onDeleteChat: (chatId: string) => void;
 }
 
 export const ChatList: FC<ChatListProps> = ({
@@ -31,18 +31,18 @@ export const ChatList: FC<ChatListProps> = ({
 
   return (
     <>
-      <ul>
+      <ul >
         {chats.map((chat) => (
           <ListItem key={chat.id}>
             <NavLink
               style={({ isActive }) => ({
-                color: isActive ? 'green' : 'blue',
+                color: isActive ? 'black' : 'darkgrey',
               })}
               to={`/chats/${chat.id}`}
             >
               {chat.name}
             </NavLink>
-            <button onClick={() => onDeleteChat(chat.name)}>Удалить</button>
+            <button onClick={() => onDeleteChat(chat.id)}>Удалить</button>
           </ListItem>
         ))}
       </ul>

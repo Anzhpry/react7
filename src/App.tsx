@@ -10,11 +10,11 @@ import { Header } from './components/Header';
 const defaultChats: Chat[] = [
   {
     id: '1',
-    name: 'first',
+    name: 'FIRST',
   },
   {
     id: '2',
-    name: 'second',
+    name: 'SECOND',
   },
 ];
 
@@ -27,6 +27,8 @@ export const App: FC = () => {
   const [chats, setChats] = useState<Chat[]>(defaultChats);
   const [messageList, setMessageList] = useState<Messages>(defaultMessages);
 
+
+
   const onAddChat = (newChat: Chat) => {
     setChats([...chats, newChat]);
     setMessageList({
@@ -35,13 +37,8 @@ export const App: FC = () => {
     });
   };
 
-  const onDeleteChat = (chat: string) => {
-    const newMessages: Messages = { ...messageList };
-    delete newMessages[chat];
-
-    setMessageList({
-      ...newMessages,
-    });
+  const onDeleteChat = (chatId: string) => {
+    setChats(chats.filter(chat => chat.id !== chatId));
   };
 
   const onAddMessage = (chatId: string, newMessage: Message) => {

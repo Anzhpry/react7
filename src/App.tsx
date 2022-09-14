@@ -1,34 +1,81 @@
-import { MessageList } from './components/MessageList';
-import { useState, useEffect, FC, useCallback } from 'react';
-import { Form } from './components/Form';
-import { AUTHOR, Message, Messages } from './types';
+import { FC, useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+import { Main } from './pages/Main';
+import { Profile } from './pages/Profile';
+import { ChatList } from './components/ChatList';
+import { AUTHOR, Chat, Message, Messages } from './types';
+import { ChatPage } from './pages/ChatPage';
+import { Header } from './components/Header';
+
+const defaultChats: Chat[] = [
+  {
+    id: '1',
+    name: 'FIRST',
+  },
+  {
+    id: '2',
+    name: 'SECOND',
+  },
+];
+
+const defaultMessages: Messages = {
+  '1': [{ author: AUTHOR.USER, text: 'hello' }],
+  '2': [{ author: AUTHOR.BOT, text: 'hello, im bot' }],
+};
 
 export const App: FC = () => {
-  const [messageList, setMessageList] = useState<Messages>([]);
+  const [chats, setChats] = useState<Chat[]>(defaultChats);
+  const [messageList, setMessageList] = useState<Messages>(defaultMessages);
 
-  const addMessages = useCallback((newMessage: Message) => {
-    setMessageList((prevMessageList) => [...prevMessageList, newMessage]);
-  }, []);
+  const onAddChat = (newChat: Chat) => {
+    setChats([...chats, newChat]);
+    setMessageList({
+      ...messageList,
+      [newChat.id]: [],
+    });
+  };
 
-  useEffect(() => {
-    if (
-      messageList.length > 0 &&
-      messageList[messageList.length - 1].author === AUTHOR.USER
-    ) {
-      const timeout = setTimeout(() => {
-        addMessages({
-          author: AUTHOR.BOT,
-          text: 'Im BOT',
-        });
-      }, 1000);
-      return () => clearTimeout(timeout);
-    }
-  }, [messageList, addMessages]);
+  const onDeleteChat = (chatId: string) => {
+    setChats(chats.filter((chat) => chat.id !== chatId));
+  };
 
+  const onAddMessage = (chatId: string, newMessage: Message) => {
+    setMessageList({
+      ...messageList,
+      [chatId]: [...messageList[chatId], newMessage],
+    });
+  };
   return (
-    <div className="App">
-      <MessageList messageList={messageList} />
-      <Form addMessages={addMessages} />
-    </div>
+    <Routes>
+      <Route path="/" element={<Header />}>
+        <Route index element={<Main />} />
+        <Route path="profile" element={<Profile />} />
+        <Route path="chats">
+          <Route
+            index
+            element={
+              <ChatList
+                chats={chats}
+                onAddChat={onAddChat}
+                onDeleteChat={onDeleteChat}
+              />
+            }
+          />
+          <Route
+            path=":chatId"
+            element={
+              <ChatPage
+                chats={chats}
+                onAddChat={onAddChat}
+                messageList={messageList}
+                onAddMessage={onAddMessage}
+                onDeleteChat={onDeleteChat}
+              />
+            }
+          />
+        </Route>
+      </Route>
+      <Route path="*" element={<div>404 page</div>} />
+    </Routes>
   );
 };

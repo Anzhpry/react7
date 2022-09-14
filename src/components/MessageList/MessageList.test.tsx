@@ -1,7 +1,7 @@
 import { render, screen } from '@testing-library/react';
 import '@testing-library/jest-dom';
 import { MessageList } from './MessageList';
-import { AUTHOR, Messages } from 'src/types';
+//import { AUTHOR, Messages } from 'src/types';
 
 describe('MessageList', () => {
   it('render component', () => {
@@ -13,7 +13,7 @@ describe('MessageList', () => {
     expect(screen.queryAllByRole('li').length).toBe(0);
   });
 
-  it('messages list length is 2', () => {
+  /* it('messages list length is 2', () => {
     const messageList: Messages = [
       {
         author: AUTHOR.USER,
@@ -25,5 +25,5 @@ describe('MessageList', () => {
     ];
     render(<MessageList messageList={messageList} />);
     expect(screen.getAllByTestId('li').length).toBe(2);
-  });
+  }); */
 });

@@ -8,7 +8,7 @@ describe('Form', () => {
     render(<Form addMessages={addMessage} />);
   });
 
-  it('input change with fireevent', () => {
+  /* it('input change with fireevent', () => {
     const addMessage = jest.fn();
     render(<Form addMessages={addMessage} />);
     const input = screen.getByTestId<HTMLInputElement>('input');
@@ -27,5 +27,5 @@ describe('Form', () => {
     const button = screen.getByTestId('button');
     fireEvent.click(button);
     expect(addMessage).toHaveBeenCalledTimes(1);
-  });
+  }); */
 });

@@ -4,6 +4,8 @@ import { ChatList } from 'src/components/ChatList';
 import { Form } from 'src/components/Form';
 import { MessageList } from 'src/components/MessageList';
 import { AUTHOR, Chat, Message, Messages } from 'src/types';
+import style from './ChatPage.module.scss';
+import { WithClasses } from '../../HOC/WithClasses';
 
 interface ChatPageProps {
   chats: Chat[];
@@ -21,6 +23,7 @@ export const ChatPage: FC<ChatPageProps> = ({
   onDeleteChat,
 }) => {
   const { chatId } = useParams();
+  const MessageListWithClass = WithClasses(MessageList);
 
   useEffect(() => {
     if (
@@ -49,7 +52,10 @@ export const ChatPage: FC<ChatPageProps> = ({
         onAddChat={onAddChat}
         onDeleteChat={onDeleteChat}
       />
-      <MessageList messageList={chatId ? messageList[chatId] : []} />
+      <MessageListWithClass
+        messageList={chatId ? messageList[chatId] : []}
+        classes={style.border}
+      />
       <Form addMessages={onAddMessage} />
     </>
   );

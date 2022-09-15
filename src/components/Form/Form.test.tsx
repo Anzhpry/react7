@@ -5,7 +5,7 @@ import '@testing-library/jest-dom';
 describe('Form', () => {
   it('render component', () => {
     const addMessage = jest.fn();
-    render(<Form addMessages={addMessage} />);
+    render(<Form />);
   });
 
   /* it('input change with fireevent', () => {

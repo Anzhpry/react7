@@ -4,7 +4,6 @@ import '@testing-library/jest-dom';
 
 describe('Form', () => {
   it('render component', () => {
-    const addMessage = jest.fn();
     render(<Form />);
   });
 

@@ -18,15 +18,12 @@ const Profile = React.lazy(() =>
   ]).then(([moduleExport]) => moduleExport)
 );
 
-
 export const App: FC = () => {
-
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
-
 
   return (
     <Provider store={store}>
@@ -38,20 +35,8 @@ export const App: FC = () => {
               <Route path="profile" element={<Profile />} />
               <Route path="about" element={<AboutWithConnect />} />
               <Route path="chats">
-                <Route
-                  index
-                  element={
-                    <ChatList
-                    />
-                  }
-                />
-                <Route
-                  path=":chatId"
-                  element={
-                    <ChatPage
-                    />
-                  }
-                />
+                <Route index element={<ChatList />} />
+                <Route path=":chatId" element={<ChatPage />} />
               </Route>
             </Route>
             <Route path="*" element={<div>404 page</div>} />

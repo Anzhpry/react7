@@ -10,7 +10,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { selectMessages } from 'src/store/messages/selectors';
 import { addMessage } from 'src/store/messages/actions';
 
-
 export const ChatPage: FC = () => {
   const { chatId } = useParams();
   const MessageListWithClass = WithClasses(MessageList);
@@ -25,17 +24,17 @@ export const ChatPage: FC = () => {
       messageList[chatId][messageList[chatId].length - 1].author === AUTHOR.USER
     ) {
       const timeout = setTimeout(() => {
-        dispatch(addMessage(chatId, {
-          author: AUTHOR.BOT,
-          text: 'Im BOT',
-        })
+        dispatch(
+          addMessage(chatId, {
+            author: AUTHOR.BOT,
+            text: 'Im BOT',
+          })
         );
       }, 1000);
 
-
       return () => clearTimeout(timeout);
     }
-  }, [chatId, messageList]);
+  }, [chatId, messageList, dispatch]);
 
   if (chatId && !messageList[chatId]) {
     return <Navigate to="/chats" replace />;
@@ -43,8 +42,7 @@ export const ChatPage: FC = () => {
 
   return (
     <>
-      <ChatList
-      />
+      <ChatList />
       <MessageListWithClass
         messageList={chatId ? messageList[chatId] : []}
         classes={style.border}

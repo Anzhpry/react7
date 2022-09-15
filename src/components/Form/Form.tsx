@@ -8,7 +8,6 @@ import { useDispatch } from 'react-redux';
 import { addMessage } from 'src/store/messages/actions';
 import { Wrapper } from './styled';
 
-
 export const Form: FC = memo(() => {
   const [text, setText] = useState();
   const { chatId } = useParams();

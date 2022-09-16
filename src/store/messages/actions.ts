@@ -9,7 +9,6 @@ export const DELETE_CHAT = 'MESSAGES::DELETE_CHAT';
 export const addChat = (chatName: string): AddChat => ({
   type: ADD_CHAT,
   chatName,
-
 });
 
 export const addMessage = (
@@ -43,8 +42,5 @@ export const addMessageWithReply =
           })
         );
       }, 1000);
-
     }
-
-
   };

@@ -8,7 +8,6 @@ import { WithClasses } from '../../HOC/WithClasses';
 import { useSelector } from 'react-redux';
 import { selectMessages } from 'src/store/messages/selectors';
 
-
 export const ChatPage: FC = () => {
   const { chatId } = useParams();
   const MessageListWithClass = WithClasses(MessageList);

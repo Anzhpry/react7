@@ -2,7 +2,6 @@ import React, { FC, useState, Suspense } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { Main } from './pages/Main';
 import { ChatList } from './components/ChatList';
-import { AUTHOR, Chat, Message, Messages } from './types';
 import { ChatPage } from './pages/ChatPage/ChatPage';
 import { Header } from './components/Header';
 import { ThemeContext } from './utils/ThemeContect';
@@ -19,49 +18,13 @@ const Profile = React.lazy(() =>
   ]).then(([moduleExport]) => moduleExport)
 );
 
-const defaultChats: Chat[] = [
-  {
-    id: '1',
-    name: 'FIRST',
-  },
-  {
-    id: '2',
-    name: 'SECOND',
-  },
-];
-
-const defaultMessages: Messages = {
-  '1': [{ author: AUTHOR.USER, text: 'hello' }],
-  '2': [{ author: AUTHOR.BOT, text: 'hello, im bot' }],
-};
-
 export const App: FC = () => {
-  const [chats, setChats] = useState<Chat[]>(defaultChats);
-  const [messageList, setMessageList] = useState<Messages>(defaultMessages);
   const [theme, setTheme] = useState<'light' | 'dark'>('light');
 
   const toggleTheme = () => {
     setTheme(theme === 'light' ? 'dark' : 'light');
   };
 
-  const onAddChat = (newChat: Chat) => {
-    setChats([...chats, newChat]);
-    setMessageList({
-      ...messageList,
-      [newChat.id]: [],
-    });
-  };
-
-  const onDeleteChat = (chatId: string) => {
-    setChats(chats.filter((chat) => chat.id !== chatId));
-  };
-
-  const onAddMessage = (chatId: string, newMessage: Message) => {
-    setMessageList({
-      ...messageList,
-      [chatId]: [...messageList[chatId], newMessage],
-    });
-  };
   return (
     <Provider store={store}>
       <ThemeContext.Provider value={{ theme, toggleTheme }}>
@@ -72,28 +35,8 @@ export const App: FC = () => {
               <Route path="profile" element={<Profile />} />
               <Route path="about" element={<AboutWithConnect />} />
               <Route path="chats">
-                <Route
-                  index
-                  element={
-                    <ChatList
-                      chats={chats}
-                      onAddChat={onAddChat}
-                      onDeleteChat={onDeleteChat}
-                    />
-                  }
-                />
-                <Route
-                  path=":chatId"
-                  element={
-                    <ChatPage
-                      chats={chats}
-                      onAddChat={onAddChat}
-                      messageList={messageList}
-                      onAddMessage={onAddMessage}
-                      onDeleteChat={onDeleteChat}
-                    />
-                  }
-                />
+                <Route index element={<ChatList />} />
+                <Route path=":chatId" element={<ChatPage />} />
               </Route>
             </Route>
             <Route path="*" element={<div>404 page</div>} />
